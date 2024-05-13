@@ -1,0 +1,13 @@
+<div class="container mx-auto pt-5">
+  <h1 class="font-bold text-5xl">Pages#home</h1>
+  <p class="text-base font-light leading-relaxed mt-5">Find me in app/views/pages/home.html.erb</p>
+  <%=
+    content_tag(:div, "test", data: {
+      controller: "counter"
+    })
+  %>
+  <div data-controller="counter">
+    PIN: <input data-counter-target="source" type="text" value="1234" readonly>
+    <button data-action="counter#copy">Copy to Clipboard</button>
+  </div>
+</div>
