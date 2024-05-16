@@ -7,22 +7,21 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+
   Ruby 3.2.2
 
 * System dependencies
   Start the application with `bin/dev`
 
 * Configuration
+  The project uses stimulus, hotwired turbo, tailwind, and definitely Ruby on Rails
 
-* Database creation
-  This application uses sqlite3 as it's database
-
-* Database initialization
+* Database
+  The database used is sqlite3 which will automatically be created once you run your migration
+  rails:db migrate
 
 * How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+  run the command `rspec` to run the test suite
 
 * ...
