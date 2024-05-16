@@ -7,19 +7,6 @@ class TodoListController < ApplicationController
   def new
   end
 
-  def show
-    @todo = TodoList.find(params[:id])
-  end
-
-  def update
-    @todo = TodoList.find(params[:id])
-    @todo.item = params[:item]
-    @todo.save!
-    return render json: {message: "Todo List updated successfully"}
-  rescue StandardError => e
-    return render json: {message: e.message}
-  end
-
   def create
     todo_list = TodoList.new(todo_params)
     if !todo_list.valid?
@@ -31,7 +18,28 @@ class TodoListController < ApplicationController
       return render json: {message: "Something went wrong"}, status: :unprocessable_entity
     end
   rescue StandardError => e
-    return render json: {message: e.message}
+    return render json: {message: e.message}, status: :bad_request
+  end
+
+  def show
+    @todo = TodoList.find(params[:id])
+  end
+
+  def update
+    @todo = TodoList.find(params[:id])
+    @todo.item = params[:item]
+    @todo.save!
+    render json: {message: "Todo List updated successfully"}
+  rescue StandardError => e
+    return render json: {message: e.message}, status: :bad_request
+  end
+
+  def destroy
+    @todo = TodoList.find(params[:id])
+    @todo.destroy!
+    render json: {message: "Todo List deleted successfully"}
+  rescue StandardError => e
+    return render json: {message: e.message}, status: :bad_request
   end
 
   private
