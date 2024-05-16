@@ -7,6 +7,19 @@ class TodoListController < ApplicationController
   def new
   end
 
+  def show
+    @todo = TodoList.find(params[:id])
+  end
+
+  def update
+    @todo = TodoList.find(params[:id])
+    @todo.item = params[:item]
+    @todo.save!
+    return render json: {message: "Todo List updated successfully"}
+  rescue StandardError => e
+    return render json: {message: e.message}
+  end
+
   def create
     todo_list = TodoList.new(todo_params)
     if !todo_list.valid?

@@ -39,4 +39,38 @@ export default class extends Controller {
         document.querySelector(".text-red-400").innerText = errorMessage
     })
   }
+
+  update(event) {
+      event.preventDefault()
+      document.querySelector(".edit-todo-item").style.pointerEvents = "none";
+      const id = event.target.getAttribute("data-item-id")
+      const item = event.target.getAttribute("data-item")
+      const newItem = prompt("Update To Do Item", item)
+      fetch(`/todo_list/${id}`, {
+          method: "PUT",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              "item": newItem,
+          })
+      })
+          .then(async function(response) {
+              const responseObj = await response.json();
+              if(!response.ok) throw new Error(responseObj.message);
+              return responseObj;
+          })
+          .then(response => {
+              const message = response?.message || response?.data?.message || response.toString();
+              alert(message);
+              setTimeout(() => {
+                  window.location.href = "/"
+              }, 2000);
+          })
+          .catch(error => {
+              document.querySelector(".edit-todo-item").style.pointerEvents = "all";
+              const errorMessage = error?.message || error?.data?.message || error.toString();
+              alert(errorMessage);
+          })
+  }
 }
