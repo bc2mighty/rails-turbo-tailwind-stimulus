@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "main_frame" do %>
+  <div class="grid grid-cols-5 gap-4">
+      <%= render "layouts/sidebar" %>
+      <%= render "todo_list/todos" %>
+  </div>
+<% end %>

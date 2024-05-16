@@ -1,0 +1,7 @@
+<div class="col-span-1 bg-gray-800 h-screen">
+    <h3 class="text-white text-3xl m-auto w-11/12 mt-10">To-Do List App</h3>
+    <div class="w-11/12 h-4/5 m-auto mt-5">
+        <%= link_to "All Todos", {controller: "todo_list", action: "index"}, class: "w-full block text-white text-bold bg-gray-700 rounded-sm hover:bg-gray-400 font-medium text-sm px-5 py-2.5 dark:bg-gray-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800 mb-1", "data-turbo-frame"=>"main_frame"%>
+        <%= link_to "Create New To Do", {controller: "todo_list", action: "new"}, class: "w-full block text-white text-bold bg-gray-700 rounded-sm hover:bg-gray-400 font-medium text-sm px-5 py-2.5 dark:bg-gray-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800", "data-turbo-frame"=>"main_frame"%>
+    </div>
+</div>
