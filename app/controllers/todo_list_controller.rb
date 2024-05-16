@@ -18,6 +18,7 @@ class TodoListController < ApplicationController
       return render json: {message: "Something went wrong"}, status: :unprocessable_entity
     end
   rescue StandardError => e
+    Rails.logger.info e
     return render json: {message: e.message}, status: :bad_request
   end
 
@@ -31,6 +32,7 @@ class TodoListController < ApplicationController
     @todo.save!
     render json: {message: "Todo List updated successfully"}
   rescue StandardError => e
+    Rails.logger.info e
     return render json: {message: e.message}, status: :bad_request
   end
 
@@ -39,6 +41,7 @@ class TodoListController < ApplicationController
     @todo.destroy!
     render json: {message: "Todo List deleted successfully"}
   rescue StandardError => e
+    Rails.logger.info e
     return render json: {message: e.message}, status: :bad_request
   end
 
